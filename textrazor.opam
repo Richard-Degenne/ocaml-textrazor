@@ -1,0 +1,15 @@
+opam-version: "2.0"
+name: "textrazor"
+maintainer: "Richard Degenne <richdeg2@gmail.com>"
+version: "dev"
+license: "GPL"
+depends: [
+  "ocaml"
+  "uri"
+  "cohttp"
+  "dune"{build}
+  "alcotest"{with-test | dev}
+  "merlin"{dev}
+]
+build: ["dune" "build" "-p" "textrazor"]
+build-test: ["dune" "runtest"]
