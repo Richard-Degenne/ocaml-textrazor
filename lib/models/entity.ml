@@ -3,7 +3,7 @@ type t = {
   ending_pos: int [@key "endingPos"];
   entity_id: string [@key "entityId"];
   freebase_id: string option [@key "freebaseId"][@default None];
-  freebase_types: string list [@key "freebaseTypes"];
+  freebase_types: string list [@key "freebaseTypes"][@default []];
   id: int;
   matched_text: string [@key "matchedText"];
   matching_tokens: int list [@key "matchingTokens"];
