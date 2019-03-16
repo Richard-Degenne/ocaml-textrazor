@@ -18,3 +18,9 @@ let get url api_key =
     Cohttp_lwt_unix.Client.get url ~headers:(headers api_key) >>=
     parse_response
   )
+
+let post_form url ?(params = []) api_key =
+  Lwt_main.run (
+    Cohttp_lwt_unix.Client.post_form url ~headers:(headers api_key) ~params >>=
+    parse_response
+  )
