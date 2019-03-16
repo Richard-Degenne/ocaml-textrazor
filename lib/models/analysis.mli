@@ -1,5 +1,5 @@
 module Options : sig
-  type extractor = [`Entities]
+  type extractor = [`Entities | `Topics]
   type t = {
     extractors: extractor list;
   }
@@ -9,6 +9,8 @@ module Options : sig
 end
 
 type t = {
+  coarse_topics: Topic.t list;
   entities: Entity.t list;
   language: string;
+  topics: Topic.t list;
 } [@@deriving of_yojson]
