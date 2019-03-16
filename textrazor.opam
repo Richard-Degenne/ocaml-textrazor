@@ -6,10 +6,13 @@ license: "GPL"
 depends: [
   "ocaml"
   "uri"
-  "cohttp"
+  "lwt_ssl"
+  "lwt_ppx"
+  "cohttp-lwt-unix"
+  "yojson"
+  "ppx_deriving_yojson"
   "dune"{build}
-  "alcotest"{with-test | dev}
-  "merlin"{dev}
+  "alcotest"{with-test}
 ]
 build: ["dune" "build" "-p" "textrazor"]
 build-test: ["dune" "runtest"]

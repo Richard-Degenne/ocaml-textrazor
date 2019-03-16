@@ -1,5 +1,13 @@
+(copy_files models/*)
 (library
   (name textrazor)
   (public_name textrazor)
-  (libraries cohttp uri)
+  (libraries cohttp-lwt-unix uri yojson)
+  (preprocess (pps lwt_ppx ppx_deriving_yojson))
+)
+
+(env
+  (dev
+    (flags (:standard -warn-error -A))
+  )
 )
