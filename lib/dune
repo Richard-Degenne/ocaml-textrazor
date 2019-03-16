@@ -1,3 +1,4 @@
+(copy_files api/*)
 (copy_files models/*)
 (library
   (name textrazor)
