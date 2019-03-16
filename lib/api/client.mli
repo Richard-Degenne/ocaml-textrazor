@@ -4,3 +4,5 @@ type t = {
 }
 
 val create : ?configuration:Configuration.t -> string -> t
+
+val account : t -> (Account.t, string) result
