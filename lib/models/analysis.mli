@@ -1,6 +1,10 @@
 module Options : sig
+  type classifier = [
+    `IAB | `IAB_content | `IPTC | `IPTC_media | `Custom of string
+  ]
   type extractor = [`Entities | `Topics]
   type t = {
+    classifiers: classifier list;
     extractors: extractor list;
   }
 
@@ -9,6 +13,7 @@ module Options : sig
 end
 
 type t = {
+  categories: Category.t list;
   coarse_topics: Topic.t list;
   entities: Entity.t list;
   language: string;
