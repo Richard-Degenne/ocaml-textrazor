@@ -14,9 +14,13 @@ let account t =
   | Ok response -> Account.of_yojson response
   | Error error -> Error error
 
-let analyze ~text ?(options = Analysis.Options.default) t =
+let analyze content ?(options = Analysis.Options.default) t =
+  let content_param = match content with
+  | `Text t -> ("text", [t])
+  | `Uri u -> ("url", [Uri.to_string u])
+  in
   let params =
-    ("text", [text]) :: Analysis.Options.to_params options
+    content_param :: Analysis.Options.to_params options
   in
   match Request.post_form (url "/" t ()) ~params t.api_key with
   | Ok response -> Analysis.of_yojson response

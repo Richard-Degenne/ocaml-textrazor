@@ -6,4 +6,5 @@ type t = {
 val create : ?configuration:Configuration.t -> string -> t
 
 val account : t -> (Account.t, string) result
-val analyze : text:string -> ?options:Analysis.Options.t -> t -> (Analysis.t, string) result
+val analyze : [`Text of string | `Uri of Uri.t] -> ?options:Analysis.Options.t -> t
+  -> (Analysis.t, string) result
