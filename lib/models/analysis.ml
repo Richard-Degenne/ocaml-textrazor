@@ -14,6 +14,7 @@ module Options = struct
     extractors: extractor list;
     return_cleaned_text: bool;
     return_raw_text: bool;
+    user_agent: string option;
   }
 
   let extractor_to_string = function
@@ -40,7 +41,7 @@ module Options = struct
     ("extractors", List.map extractor_to_string extractors)
 
   let classifiers_to_param {classifiers; _} =
-  ("classifiers", List.map classifier_to_string classifiers)
+    ("classifiers", List.map classifier_to_string classifiers)
 
   let cleanup_mode_to_param {cleanup_mode; _} =
     let value = match cleanup_mode with
@@ -56,6 +57,13 @@ module Options = struct
     let value = if return_raw_text then ["true"] else [] in
     ("cleanup.returnRaw", value)
 
+  let user_agent_to_param {user_agent; _} =
+    let value = match user_agent with
+      | Some v -> [v]
+      | None -> []
+    in
+    ("download.userAgent", value)
+
   let default =
     {
       extractors = [
@@ -65,6 +73,7 @@ module Options = struct
       classifiers = [];
       return_cleaned_text = false;
       return_raw_text = false;
+      user_agent = None;
     }
   
   let to_params t =
@@ -72,7 +81,7 @@ module Options = struct
       (fun (_,v) -> v != [])
       [
         extractors_to_param t; classifiers_to_param t; cleanup_mode_to_param t;
-        return_cleaned_to_param t; return_raw_to_param t
+        return_cleaned_to_param t; return_raw_to_param t; user_agent_to_param t;
       ]
 end
 

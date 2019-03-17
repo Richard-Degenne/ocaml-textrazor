@@ -14,6 +14,7 @@ module Options : sig
     extractors: extractor list;
     return_cleaned_text: bool;
     return_raw_text: bool;
+    user_agent: string option;
   }
 
   val default : t
