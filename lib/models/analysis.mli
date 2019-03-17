@@ -9,6 +9,7 @@ module Options : sig
     `Raw | `Tags | `HTML
   ]
   type t = {
+    allow_overlap: bool;
     classifiers: classifier list;
     cleanup_mode: cleanup_mode option;
     dbpedia_types: string list;

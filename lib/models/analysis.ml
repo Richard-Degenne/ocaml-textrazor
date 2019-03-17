@@ -9,6 +9,7 @@ module Options = struct
     `Raw | `Tags | `HTML
   ]
   type t = {
+    allow_overlap: bool;
     classifiers: classifier list;
     cleanup_mode: cleanup_mode option;
     dbpedia_types: string list;
@@ -79,9 +80,14 @@ module Options = struct
 
   let freebase_types_to_param {freebase_types; _} =
     ("entities.filterFreebaseTypes", freebase_types)
+  
+  let allow_overlap_to_param {allow_overlap; _} =
+    let value = if allow_overlap then [] else ["false"] in
+    ("entities.allowOverlap", value)
 
   let default =
     {
+      allow_overlap = true;
       dbpedia_types = [];
       extractors = [
         `Entailments; `Entities; `Phrases; `Relations; `Topics; `Words
@@ -102,6 +108,7 @@ module Options = struct
         extractors_to_param t; classifiers_to_param t; cleanup_mode_to_param t;
         return_cleaned_to_param t; return_raw_to_param t; user_agent_to_param t;
         language_to_param t; dbpedia_types_to_param t; freebase_types_to_param t;
+        allow_overlap_to_param t
       ]
 end
 
