@@ -12,6 +12,7 @@ module Options : sig
     classifiers: classifier list;
     cleanup_mode: cleanup_mode option;
     extractors: extractor list;
+    language: string option;
     return_cleaned_text: bool;
     return_raw_text: bool;
     user_agent: string option;

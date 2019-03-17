@@ -12,6 +12,7 @@ module Options = struct
     classifiers: classifier list;
     cleanup_mode: cleanup_mode option;
     extractors: extractor list;
+    language: string option;
     return_cleaned_text: bool;
     return_raw_text: bool;
     user_agent: string option;
@@ -63,6 +64,13 @@ module Options = struct
       | None -> []
     in
     ("download.userAgent", value)
+  
+  let language_to_param {language; _} =
+    let value = match language with
+      | Some l -> [l]
+      | None -> []
+    in
+    ("languageOverride", value)
 
   let default =
     {
@@ -71,6 +79,7 @@ module Options = struct
       ];
       cleanup_mode = None;
       classifiers = [];
+      language = None;
       return_cleaned_text = false;
       return_raw_text = false;
       user_agent = None;
@@ -82,6 +91,7 @@ module Options = struct
       [
         extractors_to_param t; classifiers_to_param t; cleanup_mode_to_param t;
         return_cleaned_to_param t; return_raw_to_param t; user_agent_to_param t;
+        language_to_param t
       ]
 end
 
