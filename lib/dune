@@ -1,5 +1,4 @@
-(copy_files api/*)
-(copy_files models/*)
+(include_subdirs unqualified)
 (library
   (name textrazor)
   (public_name textrazor)
