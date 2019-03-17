@@ -1,3 +1,4 @@
+(** Data structure for words. *)
 type t = {
   ending_pos: int;
   lemma: string option;

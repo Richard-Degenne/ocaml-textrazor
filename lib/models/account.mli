@@ -1,3 +1,4 @@
+(** Data structure for TextRazor accounts. *)
 type t = {
   concurrent_request_limit: int;
   concurrent_requests_used: int;

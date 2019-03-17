@@ -60,3 +60,11 @@ Get information about your Textrazor account.
 open Textrazor
 let result = Client.account c
 ```
+
+# Contributing
+
+- Fork the project;
+- Create your feature branch (`git checkout -b my-new-feature`);
+- Commit your changes (`git commit -am 'Add some feature'`);
+- Push to the branch (`git push origin my-new-feature`);
+- Create a [new pull request](https://github.com/Richard-Degenne/ocaml-textrazor/pulls).

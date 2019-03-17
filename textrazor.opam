@@ -17,7 +17,12 @@ depends: [
   "ppx_deriving_yojson"
   "dune"{build}
   "alcotest"{with-test}
+  "odoc" {with-doc}
 ]
-build: ["dune" "build" "-p" "textrazor"]
+build: [
+  ["dune" "build" "-p" "textrazor"]
+  ["dune" "build" "-p" "textrazor" "@doc"] {with-doc}
+]
 run-test: ["dune" "runtest"]
-description: "An OCaml wrapper for the TextRazor API."
+description: "An OCaml wrapper for the TextRazor API"
+synopsis: "An OCaml wrapper for the TextRazor API"

@@ -1,3 +1,4 @@
+(** Data structure for entities. *)
 type t = {
   confidence_score: float;
   ending_pos: int;
@@ -14,6 +15,11 @@ type t = {
   wikidata_id: string option;
 } [@@deriving of_yojson]
 
+(** Gets the Wikidata URI of an entity, if applicable. *)
 val wikidata_uri : t -> Uri.t option
+
+(** Gets the Freebase/Knowledge Base URI of an entity, if applicable. *)
 val freebase_uri : t -> Uri.t option
+
+(** Gets the Wikidata URL of an entity, if applicable. *)
 val wikipedia_url : t -> Uri.t option

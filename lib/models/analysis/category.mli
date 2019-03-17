@@ -1,3 +1,4 @@
+(** Data structure for categories. *)
 type t = {
   classifier_id: string;
   id: string;

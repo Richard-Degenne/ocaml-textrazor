@@ -1,3 +1,4 @@
+(** Data structure for entailments. *)
 type t = {
   context_score: float;
   entailed_words: string list;

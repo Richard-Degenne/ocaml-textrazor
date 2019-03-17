@@ -1,3 +1,4 @@
+(** Data structure for properties. *)
 type t = {
   id: int;
   word_positions: int list;
