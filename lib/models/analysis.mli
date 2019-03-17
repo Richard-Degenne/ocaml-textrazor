@@ -2,7 +2,7 @@ module Options : sig
   type classifier = [
     `IAB | `IAB_content | `IPTC | `IPTC_media | `Custom of string
   ]
-  type extractor = [`Entailments | `Entities | `Topics]
+  type extractor = [`Entailments | `Entities | `Topics | `Words]
   type t = {
     classifiers: classifier list;
     extractors: extractor list;
@@ -18,5 +18,6 @@ type t = {
   entailments: Entailment.t list;
   entities: Entity.t list;
   language: string;
+  sentences: Sentence.t list;
   topics: Topic.t list;
 } [@@deriving of_yojson]

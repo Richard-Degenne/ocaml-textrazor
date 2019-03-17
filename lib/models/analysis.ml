@@ -2,7 +2,7 @@ module Options = struct
   type classifier = [
     `IAB | `IAB_content | `IPTC | `IPTC_media | `Custom of string
   ]
-  type extractor = [`Entailments | `Entities | `Topics]
+  type extractor = [`Entailments | `Entities | `Topics | `Words]
   type t = {
     classifiers: classifier list;
     extractors: extractor list;
@@ -12,6 +12,7 @@ module Options = struct
   | `Entailments -> "entailments"
   | `Entities -> "entities"
   | `Topics -> "topics"
+  | `Words -> "words"
 
   let classifier_to_string = function
   | `IAB -> "textrazor_iab"
@@ -28,7 +29,7 @@ module Options = struct
 
   let default =
     {
-      extractors = [`Entailments; `Entities; `Topics];
+      extractors = [`Entailments; `Entities; `Topics; `Words];
       classifiers = [];
     }
   
@@ -44,5 +45,6 @@ type t = {
   entailments: Entailment.t list [@default []];
   entities: Entity.t list [@default []];
   language: string;
+  sentences: Sentence.t list [@default []];
   topics: Topic.t list [@default []];
 } [@@deriving of_yojson {strict = false}]
