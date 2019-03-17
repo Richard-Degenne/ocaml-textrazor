@@ -21,6 +21,7 @@ type t = {
   entities: Entity.t list;
   language: string;
   phrases: Phrase.t list;
+  properties: Property.t list;
   relations: Relation.t list;
   sentences: Sentence.t list;
   topics: Topic.t list;

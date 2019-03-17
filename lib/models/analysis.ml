@@ -52,6 +52,7 @@ type t = {
   entities: Entity.t list [@default []];
   language: string;
   phrases: Phrase.t list [@key "nounPhrases"][@default []];
+  properties: Property.t list [@default []];
   relations: Relation.t list [@default []];
   sentences: Sentence.t list [@default []];
   topics: Topic.t list [@default []];
