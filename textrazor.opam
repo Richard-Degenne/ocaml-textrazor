@@ -1,6 +1,10 @@
 opam-version: "2.0"
 name: "textrazor"
 maintainer: "Richard Degenne <richdeg2@gmail.com>"
+authors: ["Richard Degenne <richdeg2@gmail.com>"]
+homepage: "https://github.com/Richard-Degenne/ocaml-textrazor"
+bug-reports: "https://github.com/Richard-Degenne/ocaml-textrazor/issues"
+dev-repo: "git+https://github.com/Richard-Degenne/ocaml-textrazor.git"
 version: "dev"
 license: "GPL"
 depends: [
@@ -15,4 +19,5 @@ depends: [
   "alcotest"{with-test}
 ]
 build: ["dune" "build" "-p" "textrazor"]
-build-test: ["dune" "runtest"]
+run-test: ["dune" "runtest"]
+description: "An OCaml wrapper for the TextRazor API."
