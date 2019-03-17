@@ -2,13 +2,14 @@ module Options = struct
   type classifier = [
     `IAB | `IAB_content | `IPTC | `IPTC_media | `Custom of string
   ]
-  type extractor = [`Entities | `Topics]
+  type extractor = [`Entailments | `Entities | `Topics]
   type t = {
     classifiers: classifier list;
     extractors: extractor list;
   }
 
   let extractor_to_string = function
+  | `Entailments -> "entailments"
   | `Entities -> "entities"
   | `Topics -> "topics"
 
@@ -27,7 +28,7 @@ module Options = struct
 
   let default =
     {
-      extractors = [`Entities; `Topics];
+      extractors = [`Entailments; `Entities; `Topics];
       classifiers = [];
     }
   
@@ -40,6 +41,7 @@ end
 type t = {
   categories: Category.t list [@default []];
   coarse_topics: Topic.t list [@key "coarseTopics"][@default []];
+  entailments: Entailment.t list [@default []];
   entities: Entity.t list [@default []];
   language: string;
   topics: Topic.t list [@default []];
