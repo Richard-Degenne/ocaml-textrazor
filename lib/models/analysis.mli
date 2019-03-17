@@ -5,9 +5,15 @@ module Options : sig
   type extractor = [
     `Entailments | `Entities | `Phrases | `Relations | `Topics | `Words
   ]
+  type cleanup_mode = [
+    `Raw | `Tags | `HTML
+  ]
   type t = {
     classifiers: classifier list;
+    cleanup_mode: cleanup_mode option;
     extractors: extractor list;
+    return_cleaned_text: bool;
+    return_raw_text: bool;
   }
 
   val default : t
@@ -17,11 +23,13 @@ end
 type t = {
   categories: Category.t list;
   coarse_topics: Topic.t list;
+  cleaned_text: string option;
   entailments: Entailment.t list;
   entities: Entity.t list;
   language: string;
   phrases: Phrase.t list;
   properties: Property.t list;
+  raw_text: string option;
   relations: Relation.t list;
   sentences: Sentence.t list;
   topics: Topic.t list;

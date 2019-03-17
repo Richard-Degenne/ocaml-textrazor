@@ -5,9 +5,15 @@ module Options = struct
   type extractor = [
     `Entailments | `Entities | `Phrases | `Relations | `Topics | `Words
   ]
+  type cleanup_mode = [
+    `Raw | `Tags | `HTML
+  ]
   type t = {
     classifiers: classifier list;
+    cleanup_mode: cleanup_mode option;
     extractors: extractor list;
+    return_cleaned_text: bool;
+    return_raw_text: bool;
   }
 
   let extractor_to_string = function
@@ -25,34 +31,61 @@ module Options = struct
   | `IPTC_media -> "textrazor_mediatopics"
   | `Custom s -> s
 
+  let cleanup_mode_to_string = function
+  | `Raw -> "raw"
+  | `Tags -> "stripTags"
+  | `HTML -> "cleanHTML"
+
   let extractors_to_param {extractors; _} =
     ("extractors", List.map extractor_to_string extractors)
 
   let classifiers_to_param {classifiers; _} =
   ("classifiers", List.map classifier_to_string classifiers)
 
+  let cleanup_mode_to_param {cleanup_mode; _} =
+    let value = match cleanup_mode with
+      | Some v -> [cleanup_mode_to_string v]
+      | None -> []
+    in ("cleanup.mode", value)
+
+  let return_cleaned_to_param {return_cleaned_text; _} =
+    let value = if return_cleaned_text then ["true"] else [] in
+    ("cleanup.returnCleaned", value)
+
+  let return_raw_to_param {return_raw_text; _} =
+    let value = if return_raw_text then ["true"] else [] in
+    ("cleanup.returnRaw", value)
+
   let default =
     {
       extractors = [
         `Entailments; `Entities; `Phrases; `Relations; `Topics; `Words
       ];
+      cleanup_mode = None;
       classifiers = [];
+      return_cleaned_text = false;
+      return_raw_text = false;
     }
   
   let to_params t =
     List.filter
       (fun (_,v) -> v != [])
-      [extractors_to_param t; classifiers_to_param t]
+      [
+        extractors_to_param t; classifiers_to_param t; cleanup_mode_to_param t;
+        return_cleaned_to_param t; return_raw_to_param t
+      ]
 end
 
 type t = {
   categories: Category.t list [@default []];
   coarse_topics: Topic.t list [@key "coarseTopics"][@default []];
+  cleaned_text: string option [@key "cleanedText"][@default None];
   entailments: Entailment.t list [@default []];
   entities: Entity.t list [@default []];
   language: string;
   phrases: Phrase.t list [@key "nounPhrases"][@default []];
   properties: Property.t list [@default []];
+  raw_text: string option [@key "rawText"][@default None];
   relations: Relation.t list [@default []];
   sentences: Sentence.t list [@default []];
   topics: Topic.t list [@default []];
