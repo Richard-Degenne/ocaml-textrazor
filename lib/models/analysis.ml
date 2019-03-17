@@ -11,7 +11,9 @@ module Options = struct
   type t = {
     classifiers: classifier list;
     cleanup_mode: cleanup_mode option;
+    dbpedia_types: string list;
     extractors: extractor list;
+    freebase_types: string list;
     language: string option;
     return_cleaned_text: bool;
     return_raw_text: bool;
@@ -72,13 +74,21 @@ module Options = struct
     in
     ("languageOverride", value)
 
+  let dbpedia_types_to_param {dbpedia_types; _} =
+    ("entities.filterDbpediaTypes", dbpedia_types)
+
+  let freebase_types_to_param {freebase_types; _} =
+    ("entities.filterFreebaseTypes", freebase_types)
+
   let default =
     {
+      dbpedia_types = [];
       extractors = [
         `Entailments; `Entities; `Phrases; `Relations; `Topics; `Words
       ];
       cleanup_mode = None;
       classifiers = [];
+      freebase_types = [];
       language = None;
       return_cleaned_text = false;
       return_raw_text = false;
@@ -91,7 +101,7 @@ module Options = struct
       [
         extractors_to_param t; classifiers_to_param t; cleanup_mode_to_param t;
         return_cleaned_to_param t; return_raw_to_param t; user_agent_to_param t;
-        language_to_param t
+        language_to_param t; dbpedia_types_to_param t; freebase_types_to_param t;
       ]
 end
 

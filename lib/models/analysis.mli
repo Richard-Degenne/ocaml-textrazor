@@ -11,7 +11,9 @@ module Options : sig
   type t = {
     classifiers: classifier list;
     cleanup_mode: cleanup_mode option;
+    dbpedia_types: string list;
     extractors: extractor list;
+    freebase_types: string list;
     language: string option;
     return_cleaned_text: bool;
     return_raw_text: bool;
