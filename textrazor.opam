@@ -5,7 +5,7 @@ authors: ["Richard Degenne <richdeg2@gmail.com>"]
 homepage: "https://github.com/Richard-Degenne/ocaml-textrazor"
 bug-reports: "https://github.com/Richard-Degenne/ocaml-textrazor/issues"
 dev-repo: "git+https://github.com/Richard-Degenne/ocaml-textrazor.git"
-version: "dev"
+version: "0.1"
 license: "GPL"
 depends: [
   "ocaml"
