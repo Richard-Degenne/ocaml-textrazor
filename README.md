@@ -1,7 +1,4 @@
-# OCaml TextRazor &nbsp; [![Build status](travis-badge)](travis)
-
-[travis-badge]: https://travis-ci.org/Richard-Degenne/ocaml-textrazor.svg?branch=master
-[travis]: https://travis-ci.org/Richard-Degenne/ocaml-textrazor
+# OCaml TextRazor &nbsp; [![](https://travis-ci.org/Richard-Degenne/ocaml-textrazor.svg?branch=master)](https://travis-ci.org/Richard-Degenne/ocaml-textrazor)
 
 An OCaml wrapper for the TextRazor API.
 
