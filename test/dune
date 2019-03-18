@@ -1,6 +1,6 @@
 (executable
   (name runtest)
-  (libraries alcotest rdf)
+  (libraries alcotest textrazor)
 )
 
 (alias
