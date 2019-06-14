@@ -8,7 +8,6 @@ type t = {
   use_eu_endpoint: bool
 }
 type response = (json, string) result
-exception Invalid_item of string
 
 let create ?(secure=true) ?(use_eu_endpoint=false) api_key =
   {api_key; secure; use_eu_endpoint}
