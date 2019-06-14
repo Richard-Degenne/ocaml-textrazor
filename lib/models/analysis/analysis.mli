@@ -55,3 +55,14 @@ type t = {
   sentences: Sentence.t list;
   topics: Topic.t list;
 } [@@deriving of_yojson]
+
+(** Analyzes a text using TextRazor.
+
+    @param contents Use [(`Text "text")] to send TextRazor raw text, or
+    [(`Uri uri)] to send a publicly available URL containing the document to be
+    analyzed.
+    @param options Options of the analysis. Defaults to
+    [Analysis.Options.default].
+*)
+val post : [`Text of string | `Uri of Uri.t] -> ?options:Options.t
+  -> Client.t -> (t, string) result

@@ -5,3 +5,8 @@ type t = {
   plan: string;
   requests_used_today: int [@key "requestsUsedToday"];
 } [@@deriving of_yojson]
+
+let get client =
+  match Client.get "/account/" client with
+  | Ok response -> of_yojson (Yojson.Safe.Util.member "response" response)
+  | Error error -> Error error

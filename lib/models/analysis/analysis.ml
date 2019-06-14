@@ -126,3 +126,15 @@ type t = {
   sentences: Sentence.t list [@default []];
   topics: Topic.t list [@default []];
 } [@@deriving of_yojson {strict = false}]
+
+let content_to_param = function
+  | `Text t -> ("text", [t])
+  | `Uri u -> ("url", [Uri.to_string u])
+
+let post content ?(options = Options.default) client =
+  let params =
+    (content_to_param content) :: Options.to_params options
+  in
+  match Client.post_form "/" ~params client with
+  | Ok response -> of_yojson (Yojson.Safe.Util.member "response" response)
+  | Error error -> Error error

@@ -6,3 +6,9 @@ type t = {
   plan: string;
   requests_used_today: int;
 } [@@deriving of_yojson {strict = false}]
+
+(** Gets the account from the API.
+
+    @param client
+ *)
+val get : Client.t -> (t, string) result

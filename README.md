@@ -13,18 +13,11 @@ opam install textrazor
 
 ```ocaml
 open Textrazor
+
 let client = Client.create "api_key"
-```
 
-You can set additional options using `Configuration`:
-
-```ocaml
-open Textrazor
-let client =
-  let configuration =
-    Configuration.create ~use_eu_endpoint:true ~secure:false ()
-  in
-  Client.create ~configuration "api_key"
+(* Optional configuration *)
+let client = Client.create ~use_eu_endpoint:false ~secure:true "api_key"
 ```
 
 ## Analysis
@@ -33,20 +26,23 @@ Send either a text or a publicly available URL to the analysis endpoint.
 
 ```ocaml
 open Textrazor
+
 (* Analyze a text *)
-let result = Client.analyze (`Text "Text to analyze") client
-(* Analyze a text by URL *)
-let result =
-  Client.analyze (`Uri (Uri.of_string "https://www.example.com/sample.txt")) c
+let analysis = Analysis.post (`Text "Text to analyze") client
+
+(* Analyze a text by public URL *)
+let analysis =
+  Analysis.post (`Uri (Uri.of_string "https://www.example.com/sample.txt")) c
 ```
 
 Use `Analysis.Options` to customize the analysis.
 
 ```ocaml
 open Textrazor
-let result =
+
+let analysis =
   let options = Analysis.Options.{default with field = value} in
-  Client.analyze (`Text "Text to analyze") ~options client
+  Analysis.post (`Text "Text to analyze") ~options client
 ```
 
 ## Account
@@ -55,7 +51,8 @@ Get information about your Textrazor account.
 
 ```ocaml
 open Textrazor
-let result = Client.account c
+
+let account = Account.get client
 ```
 
 # Contributing
