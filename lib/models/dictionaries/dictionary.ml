@@ -21,6 +21,13 @@ let process_list l =
 let list client =
   match Client.get "/entities/" client with
   | Ok response ->
-  let dictionaries = Util.(member "dictionaries" response |> convert_each of_yojson) in
-  process_list dictionaries
+    let dictionaries =
+      Util.(member "dictionaries" response |> convert_each of_yojson)
+    in
+    process_list dictionaries
+  | Error error -> Error error
+
+let get id client =
+  match Client.get ("/entities/" ^ id) client with
+  | Ok response -> of_yojson (Util.member "response" response)
   | Error error -> Error error
