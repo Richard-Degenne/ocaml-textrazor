@@ -1,7 +1,8 @@
+type match_type = [`Token | `Stem]
 type t = {
   id: string;
   language: string;
-  match_type: string;
+  match_type: match_type;
   case_insensitive: bool;
 } [@@deriving of_yojson]
 
@@ -17,3 +18,10 @@ val list : Client.t -> (t list, string) result
     @param client
 *)
 val get : string -> Client.t -> (t, string) result
+
+(** Creates a dictionary on your TextRazor account.
+
+    @param t
+    @param client
+*)
+val create : t -> Client.t -> (bool, string) result

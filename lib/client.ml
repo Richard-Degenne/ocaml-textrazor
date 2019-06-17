@@ -45,3 +45,11 @@ let post_form path ?(params = []) t =
     Cohttp_lwt_unix.Client.post_form (url path t) ~headers:(headers t) ~params >>=
     parse_response
   )
+
+let put path ~body t =
+  let body = Cohttp_lwt.Body.of_string body in
+  Lwt_main.run(
+    Cohttp_lwt_unix.Client.put (url path t) ~headers:(headers t) ~body
+      ~chunked:false >>=
+    parse_response
+  )

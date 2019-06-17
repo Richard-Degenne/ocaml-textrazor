@@ -28,3 +28,11 @@ val get : string -> t -> response
     @param t
 *)
 val post_form : string -> ?params:(string * string list) list -> t -> response
+
+(** Performs a PUT request against the given path.
+
+    @param path
+    @param body
+    @param t
+ *)
+ val put : string -> body: string -> t -> response
