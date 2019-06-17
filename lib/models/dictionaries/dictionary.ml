@@ -48,3 +48,8 @@ let create t client =
   match Client.put ("/entities/" ^ t.id) ~body client with
   | Ok _ -> Ok true
   | Error error -> Error error
+
+let delete id client =
+  match Client.delete ("/entities/" ^ id) client with
+  | Ok _ -> Ok true
+  | Error error -> Error error

@@ -25,3 +25,10 @@ val get : string -> Client.t -> (t, string) result
     @param client
 *)
 val create : t -> Client.t -> (bool, string) result
+
+(** Deletes a dictionary from your TextRazor account.
+
+    @param id Identifier of the dictionary
+    @param client
+*)
+val delete : string -> Client.t -> (bool, string) result

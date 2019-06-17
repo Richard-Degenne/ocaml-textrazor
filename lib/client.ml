@@ -33,7 +33,6 @@ let url path t =
   Uri.make ~scheme:(scheme t) ~host:(host t) ~path
     ?userinfo:None ?port:None ?fragment:None ()
 
-
 let get path t =
   Lwt_main.run (
     Cohttp_lwt_unix.Client.get (url path t) ~headers:(headers t) >>=
@@ -51,5 +50,11 @@ let put path ~body t =
   Lwt_main.run(
     Cohttp_lwt_unix.Client.put (url path t) ~headers:(headers t) ~body
       ~chunked:false >>=
+    parse_response
+  )
+
+let delete path t =
+  Lwt_main.run (
+    Cohttp_lwt_unix.Client.delete (url path t) ~headers:(headers t) >>=
     parse_response
   )

@@ -36,3 +36,10 @@ val post_form : string -> ?params:(string * string list) list -> t -> response
     @param t
  *)
  val put : string -> body: string -> t -> response
+
+(** Performs a DELETE request against the given path.
+
+    @param path
+    @param t
+*)
+val delete : string -> t -> response
