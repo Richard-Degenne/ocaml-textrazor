@@ -4,7 +4,7 @@ type t = {
   secure: bool;
   use_eu_endpoint: bool
 }
-type response = (Yojson.Safe.json, string) result
+type response = (Yojson.Safe.t, string) result
 
 (** Creates a new client.
 
