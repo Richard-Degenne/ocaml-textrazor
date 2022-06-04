@@ -7,7 +7,7 @@ type t = {
   secure: bool;
   use_eu_endpoint: bool
 }
-type response = (json, string) result
+type response = (Yojson.Safe.t, string) result
 exception Invalid_item of string
 
 let create ?(secure=true) ?(use_eu_endpoint=false) api_key =
