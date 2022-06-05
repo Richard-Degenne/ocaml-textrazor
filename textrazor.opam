@@ -6,7 +6,7 @@ homepage: "https://github.com/Richard-Degenne/ocaml-textrazor"
 bug-reports: "https://github.com/Richard-Degenne/ocaml-textrazor/issues"
 dev-repo: "git+https://github.com/Richard-Degenne/ocaml-textrazor.git"
 version: "0.1.1"
-license: "GPL"
+license: " GPL-3.0-or-later"
 depends: [
   "ocaml" {>= "4.04.0"}
   "uri"
@@ -15,7 +15,7 @@ depends: [
   "cohttp-lwt-unix"
   "yojson" {>= "1.6.0"}
   "ppx_deriving_yojson"
-  "dune"{build}
+  "dune" {>= "1.6"}
   "alcotest"{with-test}
   "odoc" {with-doc}
 ]
